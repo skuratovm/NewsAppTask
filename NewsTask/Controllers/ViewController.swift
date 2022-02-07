@@ -54,11 +54,11 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         createSearchBar()
-        fetchTopStories()
+        fetchCurrentDayNews()
         
     }
     @objc func refresh(_ sender: AnyObject){
-        fetchTopStories()
+        fetchCurrentDayNews()
         daysCounter = 1
     }
     
@@ -68,12 +68,12 @@ class ViewController: UIViewController {
         searchController.searchBar.delegate = self
     }
     
-    private func fetchTopStories () {
-        var dateValue = Date()
+    private func fetchCurrentDayNews () {
+        let dateValue = Date()
         
-        var BDateValue = dateValue.addingTimeInterval(TimeInterval(-1*24*60*60))
-        var toDateValue = formatter.string(from: dateValue)
-        var fromDateValue = formatter.string(from: BDateValue)
+        let BDateValue = dateValue.addingTimeInterval(TimeInterval(-1*24*60*60))
+        let toDateValue = formatter.string(from: dateValue)
+        let fromDateValue = formatter.string(from: BDateValue)
         
         APICaller.shared.getCurrentDayNews(pagination: true, url:configuredURL(fromDate: fromDateValue, toDate: toDateValue)) { [weak self] result in
             switch result{
