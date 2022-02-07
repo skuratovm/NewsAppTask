@@ -18,11 +18,8 @@ class FavoritesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsInfo")
-        
     }
     
-
-
 }
 
 extension FavoritesViewController:UITableViewDelegate,UITableViewDataSource{
@@ -48,7 +45,7 @@ extension FavoritesViewController:UITableViewDelegate,UITableViewDataSource{
     private func removeFromFavorites(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction{
         let action = UIContextualAction(style: .destructive, title: "Remove from favorites") { [weak self]_, _, _ in
             guard let self = self else {return}
-            DataBase.shared.deleteSchedule(result: DataBase.shared.news![indexPath.row], row: indexPath.row)
+            DataBase.shared.deleteArticle(result: DataBase.shared.news![indexPath.row], row: indexPath.row)
             self.tableView.reloadData()
             
         }

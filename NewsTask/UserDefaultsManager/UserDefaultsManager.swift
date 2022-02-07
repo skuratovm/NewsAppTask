@@ -25,11 +25,11 @@ class DataBase{
             }
         }
     }
-    func saveSchedule(result: NewsTableViewCellViewModel?,row: Int){
+    func saveArticle(result: NewsTableViewCellViewModel?,row: Int){
 
         news?.insert(result!, at: 0)
     }
-    func deleteSchedule(result: NewsTableViewCellViewModel?,row: Int){
+    func deleteArticle(result: NewsTableViewCellViewModel?,row: Int){
         news?.remove(at: row)
         
     }
